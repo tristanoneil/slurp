@@ -11,9 +11,15 @@ func main() {
 	gc := NewGroceryCollector()
 	gc.CollectInput()
 
-	fmt.Println("You've added:")
+	request := NewOpenAIChatRequest(gc.GroceriesAsString())
 
-	for _, item := range gc.Groceries {
-		fmt.Println(item)
+	responseText, err := request.Send()
+
+	if err != nil {
+		fmt.Printf("Error communicating with OpenAI: %v\n", err)
+		return
 	}
+
+	fmt.Println("\nCategorized Groceries:")
+	fmt.Println(responseText)
 }

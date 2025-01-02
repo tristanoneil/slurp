@@ -41,3 +41,7 @@ func (gc *GroceryCollector) CollectInput() {
 		}
 	}
 }
+
+func (gc *GroceryCollector) GroceriesAsString() string {
+	return fmt.Sprintf("- %s", strings.Join(gc.Groceries, "\n- "))
+}
