@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"io"
 	"net/http"
-	"os"
 	"strings"
 )
 
@@ -38,13 +37,7 @@ func NewOpenAIChatRequest(prompt string, groceriesAsString string) *OpenAIChatRe
 	}
 }
 
-func (request *OpenAIChatRequest) Send() (string, error) {
-	apiKey := os.Getenv("OPENAI_API_KEY")
-
-	if apiKey == "" {
-		return "", fmt.Errorf("OPENAI_API_KEY environment variable not set")
-	}
-
+func (request *OpenAIChatRequest) Send(apiKey string) (string, error) {
 	payload, err := json.Marshal(request)
 	if err != nil {
 		return "", fmt.Errorf("failed to marshal request: %v", err)

@@ -8,7 +8,8 @@ import (
 )
 
 type Config struct {
-	Prompt string `toml:"prompt"`
+	Prompt       string `toml:"prompt"`
+	OpenAIAPIKey string `toml:"open-ai-api-key"`
 }
 
 func main() {
@@ -26,7 +27,7 @@ func main() {
 
 	request := NewOpenAIChatRequest(config.Prompt, gc.GroceriesAsString())
 
-	responseText, err := request.Send()
+	responseText, err := request.Send(config.OpenAIAPIKey)
 	if err != nil {
 		fmt.Printf("Error communicating with OpenAI: %v\n", err)
 		return

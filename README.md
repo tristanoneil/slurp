@@ -11,6 +11,7 @@ Slurp is a CLI tool to help me (and maybe you) build a grocery list. It currentl
 This TOML file should be located at `~/.config/slurp/config`
 
 ```TOML
+open-ai-api-key="your-key-here"
 prompt = """
 You are a helpful assistant specializing in grocery categorization. Prefix each
 item in a grocery list with a single emoji representing its store location.
