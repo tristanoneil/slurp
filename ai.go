@@ -28,11 +28,11 @@ type OpenAIResponse struct {
 	} `json:"choices"`
 }
 
-func NewOpenAIChatRequest(groceriesAsString string) *OpenAIChatRequest {
+func NewOpenAIChatRequest(prompt string, groceriesAsString string) *OpenAIChatRequest {
 	return &OpenAIChatRequest{
 		Model: "gpt-4o",
 		Messages: []Message{
-			{Role: "system", Content: "You are a helpful assistant specializing in grocery categorization. Prefix each item in a grocery list with a single emoji representing its store location. Remember the emoji should represent the category NOT the item. Sort items by their prefixed emoji. Do not include category headers. If an item's category is unclear, default to 🛒 pantry. Correct spelling errors and capitalize item names. The valid categories are: produce, dairy, pantry, frozen, meat, toiletries. For pantry use 🛒, for produce use 🍑, for meat use 🥩, for frozen use 🧊, for toiletries use 🧴"},
+			{Role: "system", Content: prompt},
 			{Role: "user", Content: groceriesAsString},
 		},
 	}
